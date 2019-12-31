@@ -1,0 +1,6 @@
+<%=@user.name %>のお気に入り
+<% @favorites.each do |favorite| %>
+  <% task = Task.find(favorite.task_id) %>
+ <div><%=task.content %></div>
+ 
+ <% end %>

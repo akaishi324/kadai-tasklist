@@ -7,6 +7,7 @@ class TasksController < ApplicationController
     if logged_in?
       @task = current_user.tasks.build  # form_with 用
       @tasks = Task.all.order(id: :desc).page(params[:page])
+       @user = current_user.id
     end
   end
   
@@ -47,6 +48,11 @@ class TasksController < ApplicationController
     flash[:success] = 'Task は正常に削除されました'
     redirect_to tasks_url
   end
+  
+  def likes
+     @user = User.find(params[:id])
+     @favorites=@user.favorites.page(params[:page])
+  end  
 
   private
   

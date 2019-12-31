@@ -24,6 +24,12 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def likes
+    @user = current_user
+    @favorites = Favorite.where(user_id: @user.id).all
+  end
+
   private
 
   def user_params
